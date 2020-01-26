@@ -3,8 +3,8 @@ import {
     Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
     ViewChild, Renderer2
 } from '@angular/core';
-import {Subject, Subscription} from 'rxjs';
-import {QRCode} from './lib/qr-decoder/qrcode';
+import { Subject, Subscription } from 'rxjs';
+import { QRCode } from './lib/qr-decoder/qrcode';
 
 @Component({
     selector: 'qr-scanner',
@@ -50,7 +50,7 @@ export class QrScannerComponent implements OnInit, OnDestroy, AfterViewInit {
     public qrCode: QRCode;
     public stream: MediaStream;
     public captureTimeout: any;
-    private  canvasHidden = true;
+    public canvasHidden = true;
     get isCanvasSupported(): boolean {
         const canvas = this.renderer.createElement('canvas');
         return !!(canvas.getContext && canvas.getContext('2d'));
@@ -157,10 +157,10 @@ export class QrScannerComponent implements OnInit, OnDestroy, AfterViewInit {
 
         let constraints: MediaStreamConstraints;
         if (_device) {
-            constraints = {audio: false, video: {deviceId: _device.deviceId}};
+            constraints = { audio: false, video: { deviceId: _device.deviceId } };
         } else {
 
-            constraints = {audio: false, video: true};
+            constraints = { audio: false, video: true };
         }
         _navigator.mediaDevices.getUserMedia(constraints).then(function (stream) {
             self.setStream(stream);
